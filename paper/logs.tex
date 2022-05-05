@@ -1,0 +1,131 @@
+% --------------------
+\section{Logbook}
+% --------------------
+
+\subsection{31.12.21}
+Attempt at fixing webdriver so it does not crash. Implement headless version and clear cache after every 50th scroll. (I should implement some print statements for the headless version...). Did not work. Trying Firefox as Browser next, since I can't find info on the Error.
+
+Starting with Preprocessing Scripts for Twitter Data. Implement following functions:
+\begin{enumerate}
+  \item remove rows with stop words from dataframe
+  \item contains more than x hashtags or ticker tags
+  \item remove Twitter Tags: \#, \textdollar, @ 
+  \item lower case 
+  \item tokenize
+\end{enumerate}
+
+I have created a list with certain terms that I expect from bot tweets or spam tweets, such as "giveaway", "bot". These tweets are not indicative of the sentiment. But I should include them in the raw Tweet Volume count. 
+
+I am stripping all the Hashtags, Ticker Tags, Member Tags and URLs from the tweets because they are not important to the sentiment of the tweet. All the tweets in one csv refer to one Cryptocurrency anyway, so I don't need the information.
+
+I am lower casing the tweets to avoid duplicates in the word frequency analysis.
+Not all tweet will be English. Do I filter them or assume that the number is so small that they don't matter?
+
+\subsection{1.1.22}
+Application to Academic Tier Twitter API access was denied. I have to resort to other means and applied for the regular Developer account. I will also continue scraping.
+
+I have set the webdriver to firefox and adjusted the code accordingly to account for the slightly slower browser. Scraper ran without crashing for the first time, but I found out there was a scroll limit in the search function of Twitter. 
+I therefore adjusted the scraper to run for a whole month, twice for every day, once from the beginning, once from the end and stop if they meet in the middle. Test running now, may have to fix it.
+
+\textbf{Implications}: I could get a few months data with this method, but only if the \# of Tweets per day does not exceed the \textit{scroll-limit * 2}. Otherwise there will be missing values. This disqualifies Cryptocurrencies with larger daily Tweet volumes from my analysis.
+
+I have then added scripts that add the preprocessed Tweets to the source Dataframe and save it as a new csv.
+
+\subsection{3.1.22}
+I want to identify the relevant and idiosyncratic words in a corpus of composed of Crypto-Tweets. I am doing this by implementing a script which analyzes the words' TFIDF. 
+
+\subsection{9.1.22}
+I obtained the Twitter API key for academic tier access. I wrote a wrapper for the API using tweepy. I proceeded to scrape the tweets for four cryptocurrencies (Avalanche, Fantom, Atom, Solana) through the year 2021.
+Lengths are: 
+- 651672 Tweets for Avalanche
+- 502361 Tweets for Fantom
+- 359955 Tweets for Atom
+- 2861546 Tweets for Solana
+
+\subsection{11.1.22}
+From the Tweet datasets, I want to sample a balanced dataset (500 for each dataset) which I will use for manual labelling (pos, neg, neutr). I am also re-running the Binance Data Scraper to match my market data to the cryptocurrencies and timeframes of my twitter data.
+
+\subsection{18.1.22}
+Creating Corpora from the Twitter Datasets and Vanilla Dataset. First running Tweet csvs through Preprocessing Scripts. Observation: I should preprocess Data before manual labelling, gets rid of spam. Do I label pos/neg only if the Tweet refers to the Cryptocurrency at hand? Very few negative Tweets.
+
+\subsection{28.1.22}
+Today I am speeding up the preprocessing scripts a bit (turned out to be a lot) with vectorized operations and will be running them to create cleaned up tweets and text corpora consisting form the csvs pertaining to the tokens. Will also clean up the vanilla tweets and make a corpus out of them. 
+Scraped Vanilla tweets for comparison with empty query 1 minute each at 12pm 1/6/21, 1/7/21, 1/8/21 and 1/9/21. Preprocessing is the same (think about changing spam criteria)
+
+\subsection{31.1.22}
+Wrote scripts that append the Vanilla corpus and csv files to a single one. 
+
+\subsection{2.2.22}
+Today I am researching TFIDF and other methods for keyword extraction / term frequency analysis. Looking for libraries to use like sklearn, spacy.
+\begin{enumerate}
+    \item spacy has keyword extraction and several corpora for context (medical, ...). Does not output score (?) but can output n-grams
+\end{enumerate}
+
+Created table of words which occur often in Crypto-Token Corpora and not in Vanilla Corpora, by taking the top 500 frequency words of each and then subtracting the intersection from the Crypto Top words. \\
+NOTE: I still need to do this with a sampled corpus of all crypto datasets, appending them didn't work. Counting Frequencies on the Solana Set also didn't work because it's too big. Maybe I can sample there too. \\
+NOTE2: I must have made a mistake, the top words are nonsense, the output earlier looked much more reasonable. Have to work this out with a clearer mind. Ok I mixed up the crypto and vanilla corpora. Done, looks plausible.
+Trying SOL again the process still takes too much ram even when I take only 1/400 of corpora, maybe do on server. Important thing is the sampled from all corpora anyway.
+
+\subsection{3.2.22}
+Today I created a tweet cvs which samples from all sub-datasets. 100k Tweets from each. Then I created a Dataset for Manual Labelling (pos neg neutr) of 10k from this. Must also create a corpus and frequency list from the combined dataset later. Then start labelling. Aim for a few 1000 total. \\
+NOTE: tweets often don't pertain to token in question, only use cashtag to get attention. Also sort of indicates positive sentiment if it's used as attention getter. And I assume vocabulary relating to sentiment stays crypto related, so it does not matter to me. \\
+NOTE2: more than x tags removal didn't work seemingly \\
+NOTE3: word-tokenization needs to take into account line breaks too \\
+NOTE4: as expected, much less negative tweets. Also effect of stuff mostly moving upwards in 2021. \\
+500 labelled today.
+
+\subsection{4.2.22}
+I just noticed that a different Preprocessing procedure may be needed for Sentiment Analysis compared to Lexical Analysis. Stop word removal (What else?) can hinder the sentence level analysis of Vader, like negation, amplification etc.
+I will start collecting interesting tweet examples for presentation/report. \\
+NOTE: some tweets talk dialectically, bad about one token, good about another. need sentence level analysis.\\
+NOTE2: compare \% of token in 2021 with amount of pos neg tweets? keep in mind for later. \\
+Another 500 labelled today.
+
+\subsection{6.2.22}
+Getting to know the dataset better through labelling a few 1000, being able to add to the spam list. Look up Vader preprocessing. rework the preprocessing scripts to exclude tag spam and new stop words (DONE). filter "amp;".
+Maybe search out specific negative words in man label csv to increase set of neg tweets (rug, dump, short, bear, ...).
+Create new man label csv with spam filtered and append with old one. 
+Created some high level Flowcharts for presentation.
+
+\subsection{7.2.22}
+More labelling. But I should get the rest of the pipeline coded even before I have enough labels so I can show something on friday. I will adjust the VADER dict as following: first look which words appear frequently in crypto corpora which are not frequent in vanilla corpora. Then I will adjust their score in the dictionary depending on how frequent they appear in pos / neg sentiment tweets.
+Why am I not using TFIDF? Because if I only have 1 other document, the method becomes redundant and what I'm doing appears to be doing the same thing, albeit more radical.
+I am writing a script which takes the manual label csv and splits to pos neg dataframes according to label. Then I take the top crypto words dict, turn the words into list and count in how many pos/neg tweets they appear divided by total number of pos/neg tweets. Then squish the distribution between 0 and 4 and -4 and 0 respectively. create plot
+PROBLEM: If I only consider words that are generally high frequent in crypto, I might be missing some negative words due to the unbalanced nature of positive and negative tweets in total. So I may have to make a corpus from a balanced set from my labelled tweets and utilize those words. \\ 
+BUT1: If I take the common crypto words only from my labelled dataset, I have a much smaller, therefore potentially less representative sample.\\
+BUT2: due to positive tweets being much more common, this makes negative sentiment classification less important in general? What I can do is compare highest frequency neg words with highest frequency general words and see how many are not represented. \\
+
+OK closing for today. Have to fully understand how VADER handles emojis. Does it just turn them into text and runs SA on the text? Yes, seems like it ... \\
+
+Another TODO: I have to derive the frequent words from my labelled csv. It's no use, otherwise I only get to keep Emoji.
+
+\subsection{8.2.22}
+Found the bug which caused the small set of relevant words and only Emoji. Output much better now, will clean up and then think how to adjust vader scores for emoji. But much smaller problem now that emoji make up only much smaller part of set of words! \\
+Thinking of keeping only highest and lowest scoring words, cut of middle so I don't overwrite large part of the OG VADER lexicon, only the really meaningful words. plot distribution. \\
+also manually clean very neutral words with positive scores, I think they are  a result of overrepresentation of pos tweets. \\
+Also clean up VADER's NEGATE and BOOSTER words from list. \\
+I am starting on the evaluation suite for Sentiment Analysis on my labelled Evaluation set. Accuracy score works. \\
+Adding functions to output Tweet Sentiment Proportions (gold and pred) \\
+TODO: preprocessing function for SA. \\
+TODO2: read Vader paper. \\ 
+TODO3: alte mail mit paper von Prof. Stede lesen zu freq analysis. \\
+
+\subsection{9.2.22}
+Today I am editing a lexicon with the scores I have and then do SA with it. compare accuracy between lexica. write presentation text for second presentation.
+
+\subsection{28.2.22}
+This describes what I have done the past week. I normalized the timestamps of market and sentiment data, now they're both unix timestamps. I wrote a function which returns the mean sentiment score of a set of tweets corresponding to a candle-interval of the market data and wrote this out as a sequence of mean sentiment scores. \\
+Then, in order to be able to perform the time-lagged correlation of sentiment, tweet volume and price or price change. I joined those csvs according to open-time of time-interval. I can think about whether I have to normalize the data in some way before computing correlation scores.
+
+\subsection{2.3.22}
+Today I quickly implemented a function for cross-correlation of pandas Series. Next I should find a good way to plot them. Plot the (normalized) Series and then the cross-correlation / time-lag Series of correlations. Then labelling and starting to write the paper.
+
+\subsection{4.3.22}
+Considerations for labelling: What does the sentiment concerning? What is the entity? Is it even concerning price, or some other thing like how well the Blockchain works, speed etc. Sometimes there is talk about different entities. Is this important for price prediction? \\
+Are bot tweets indicative of sentiment by proxy? \\
+"Profit by shorting" positive for tweeter, negative for price \\
+
+\subsection{20.3.22}
+After labelling several thousand examples, now back to the code. Introducing 80/20 train-test split. re-running pos-neg-occurence script with new labels. then cleaning it up, removing meaningless entries like "...". \\
+remove entries with -1 < x < 10 to avoid cluttering. \\
+Then I have to find a way to morph the distribution to flatten it.

@@ -1,0 +1,25 @@
+\begin{thebibliography}{}
+
+\bibitem [\protect \citeauthoryear {%
+Nakamoto%
+}{%
+Nakamoto%
+}{%
+{\protect \APACyear {2008}}%
+}]{%
+bitcoin}
+\APACinsertmetastar {%
+bitcoin}%
+\begin{APACrefauthors}%
+Nakamoto, S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2008}{}{}.
+\newblock
+\APACrefbtitle {Bitcoin: A peer-to-peer electronic cash system,”
+  http://bitcoin.org/bitcoin.pdf.} {Bitcoin: A peer-to-peer electronic cash
+  system,” http://bitcoin.org/bitcoin.pdf.}
+\PrintBackRefs{\CurrentBib}
+
+\end{thebibliography}
