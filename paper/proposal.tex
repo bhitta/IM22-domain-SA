@@ -39,11 +39,40 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
-
+\section{General}
 {\setstretch{.8}
 \maketitle
 
-\citet{bitcoin}
+Goal: SA model with good performance in the domains of Crypto and Climate Tweets, which takes into account stances toward entities.
+
+\begin{enumerate}
+        \item Using stance detection (or similar) to be able to look at the Tweets in a more fine-grained way and split them up into several sub-statements if they pertain to different entities.
+
+        \item Using DistilBERT \citet{distilbert} which is pre-trained on Twitter data and fine-tuning it on Crypto and Climate data respectively to increase their performance on the Domain-Tweets.
+\end{enumerate}
+
+\section{Stance Detection}
+
+evaluate stance towards given entity. \\
+example: https://github.com/ZurichNLP/xstance , though not usable for me, no english \\
+
+\section{Entity Recognition}
+
+uses dictionary for entities and synonyms. bad, but could be scraped from coingecko.
+name expansion adds to dictionary automatically (prefixed, suffixed forms etc.) \\
+
+Auto-annotate crypto set with info from coingecko: all \$XXX are entities and everything that is in coingecko token list. Fine-tune NER Bert this way? IOB or BILOU Format (see https://colab.research.google.com/github/NielsRogge/Transformers-Tutorials/blob/master/BERT/Custom_Named_Entity_Recognition_with_BERT_only_first_wordpiece.ipynb) \\
+
+Do I have to do this? Just run the auto-annotation code above as final NER. Otherwise my data is highly biased towards the 4 cashtags I scraped Twitter with. This makes fine-tuning a model with this data a stupid endeavor. \\
+
+Next Problem: How do I split according to entity? Or get the sentence which describes the sentiment towards it? Finding entities is easy, deciding what text describes the sentiment is harder. Ask Prof. Stede?
+
+\section{Relation Extraction}
+rule-based natural language parser: understands relations of grammar. \\
+machine-learning: higher recall, lower precision than rule-based \\
+
+WordNet to identify if crypto is talked about ? fuzzy matching to Coingecko list? Heuristic with \$tag ? \\
+
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % REFERENCES SECTION
