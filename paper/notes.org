@@ -1,0 +1,40 @@
+#+TITLE: Notes
+
+* Data
+
+** Crypto
+- General 2021 Crypto L1 dataset
+
+** Other candidates
+- SemEval-2014
+- MAMS
+
+
+* Preprocessing
+
+** Filtering
+- make sure spam filters work and are even harder
+- cut off all instances of $-tag spamming, only keep Entities, which are organically contained in Tweet.
+
+** General Preprocessing
+** Preprocessing for ABSA
+1. run Entity Recognition Model and Script with Info from Coingecko on Tweets to find Entities in Sentence
+2. if there are multiple Entities and the Tweet is split, flag it as split
+3. if not split, use label from labelled dataset
+4. Over-proportionally label Tweets labelled as Multi-Aspect to get more representation and balance
+
+
+* Literature
+
+** Feng (2022) Unrestricted Attention May Not Be All You Need–Masked Attention Mechanism Focuses Better on Relevant Parts in Aspect-Based Sentiment Analysis
+https://ieeexplore.ieee.org/abstract/document/8864964
+- Co-Author of TD-BERT paper, only author who continued with Sentiment Analysis research
+- Attention is not optimal for ABSA, masks need to be introduced to limit the scope
+  1. AM-Weight: sets a weight threshold to filter out irrelevant parts
+  2. AM-Word: keeps only the top words in weight assignment
+
+- Baseline: RoBERTa from huggingface
+- Datasets: SemEval-2014 and Multi-Aspect Multi-Sentiment(MAMS)
+
+- describes difference between ABSA, ATSA and ACSA (for reference)
+- thorough explanation of model but no code (e-mail)
