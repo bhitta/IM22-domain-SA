@@ -15,6 +15,8 @@
     "subcaption"
     "float"
     "geometry")
+   (LaTeX-add-labels
+    "fig:schema_graph")
    (LaTeX-add-bibliographies
     "references.bib"))
  :latex)

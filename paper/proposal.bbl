@@ -1,25 +1,170 @@
 \begin{thebibliography}{}
 
 \bibitem [\protect \citeauthoryear {%
-Nakamoto%
+Devlin%
+, Chang%
+, Lee%
+\BCBL {}\ \BBA {} Toutanova%
 }{%
-Nakamoto%
-}{%
-{\protect \APACyear {2008}}%
+Devlin%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2018}}%
 }]{%
-bitcoin}
+bert}
 \APACinsertmetastar {%
-bitcoin}%
+bert}%
 \begin{APACrefauthors}%
-Nakamoto, S.%
+Devlin, J.%
+, Chang, M\BHBI W.%
+, Lee, K.%
+\BCBL {}\ \BBA {} Toutanova, K.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{2008}{}{}.
+\APACrefYearMonthDay{2018}{}{}.
 \newblock
-\APACrefbtitle {Bitcoin: A peer-to-peer electronic cash system,”
-  http://bitcoin.org/bitcoin.pdf.} {Bitcoin: A peer-to-peer electronic cash
-  system,” http://bitcoin.org/bitcoin.pdf.}
+{\BBOQ}\APACrefatitle {Bert: Pre-training of deep bidirectional transformers
+  for language understanding} {Bert: Pre-training of deep bidirectional
+  transformers for language understanding}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{arXiv preprint arXiv:1810.04805}{}{}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Dong%
+\ \protect \BOthers {.}}{%
+Dong%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2014}}%
+}]{%
+twitter_data}
+\APACinsertmetastar {%
+twitter_data}%
+\begin{APACrefauthors}%
+Dong, L.%
+, Wei, F.%
+, Tan, C.%
+, Tang, D.%
+, Zhou, M.%
+\BCBL {}\ \BBA {} Xu, K.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2014}{{\APACmonth{06}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Adaptive Recursive Neural Network for Target-dependent
+  {T}witter Sentiment Classification} {Adaptive recursive neural network for
+  target-dependent {T}witter sentiment classification}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {Proceedings of the 52nd Annual Meeting of the
+  Association for Computational Linguistics (Volume 2: Short Papers)}
+  {Proceedings of the 52nd annual meeting of the association for computational
+  linguistics (volume 2: Short papers)}\ (\BPGS\ 49--54).
+\newblock
+\APACaddressPublisher{Baltimore, Maryland}{Association for Computational
+  Linguistics}.
+\newblock
+\begin{APACrefURL} \url{https://aclanthology.org/P14-2009} \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.3115/v1/P14-2009} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Gao%
+, Feng%
+, Song%
+\BCBL {}\ \BBA {} Wu%
+}{%
+Gao%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2019}}%
+}]{%
+TD-BERT}
+\APACinsertmetastar {%
+TD-BERT}%
+\begin{APACrefauthors}%
+Gao, Z.%
+, Feng, A.%
+, Song, X.%
+\BCBL {}\ \BBA {} Wu, X.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2019}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Target-Dependent Sentiment Classification With BERT}
+  {Target-dependent sentiment classification with bert}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{IEEE Access}{7}{}{154290-154299}.
+\newblock
+\begin{APACrefDOI} \doi{10.1109/ACCESS.2019.2946594} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Hutto%
+\ \BBA {} Gilbert%
+}{%
+Hutto%
+\ \BBA {} Gilbert%
+}{%
+{\protect \APACyear {2015}}%
+}]{%
+vader}
+\APACinsertmetastar {%
+vader}%
+\begin{APACrefauthors}%
+Hutto, C.%
+\BCBT {}\ \BBA {} Gilbert, E.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{01}{}.
+\newblock
+{\BBOQ}\APACrefatitle {VADER: A Parsimonious Rule-based Model for Sentiment
+  Analysis of Social Media Text} {Vader: A parsimonious rule-based model for
+  sentiment analysis of social media text}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Proceedings of the 8th International Conference on
+  Weblogs and Social Media, ICWSM 2014}{}{}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Pontiki%
+\ \protect \BOthers {.}}{%
+Pontiki%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2016}}%
+}]{%
+semeval2016}
+\APACinsertmetastar {%
+semeval2016}%
+\begin{APACrefauthors}%
+Pontiki, M.%
+, Galanis, D.%
+, Papageorgiou, H.%
+, Androutsopoulos, I.%
+, Manandhar, S.%
+, AL-Smadi, M.%
+\BDBL {}Eryi{\u{g}}it, G.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2016}{{\APACmonth{06}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {{S}em{E}val-2016 Task 5: Aspect Based Sentiment
+  Analysis} {{S}em{E}val-2016 task 5: Aspect based sentiment analysis}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {Proceedings of the 10th International Workshop on
+  Semantic Evaluation ({S}em{E}val-2016)} {Proceedings of the 10th
+  international workshop on semantic evaluation ({S}em{E}val-2016)}\ (\BPGS\
+  19--30).
+\newblock
+\APACaddressPublisher{San Diego, California}{Association for Computational
+  Linguistics}.
+\newblock
+\begin{APACrefURL} \url{https://aclanthology.org/S16-1002} \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.18653/v1/S16-1002} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \end{thebibliography}

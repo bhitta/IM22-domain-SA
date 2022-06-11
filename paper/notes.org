@@ -9,7 +9,6 @@
 - SemEval-2014
 - MAMS
 
-
 * Preprocessing
 
 ** Filtering
@@ -23,9 +22,12 @@
 3. if not split, use label from labelled dataset
 4. Over-proportionally label Tweets labelled as Multi-Aspect to get more representation and balance
 
-
 * Literature
-
+** Gao (2019) Target-Dependent Sentiment Classification With BERT
+https://ieeexplore.ieee.org/abstract/document/8864964
+- applying BERT to ABSA
+- some simple strategies for incorporation of target information
+  -> reliance mainly on BERT but incorporating target token
 ** Feng (2022) Unrestricted Attention May Not Be All You Need–Masked Attention Mechanism Focuses Better on Relevant Parts in Aspect-Based Sentiment Analysis
 https://ieeexplore.ieee.org/abstract/document/8864964
 - Co-Author of TD-BERT paper, only author who continued with Sentiment Analysis research
@@ -38,3 +40,50 @@ https://ieeexplore.ieee.org/abstract/document/8864964
 
 - describes difference between ABSA, ATSA and ACSA (for reference)
 - thorough explanation of model but no code (e-mail)
+
+** Lin (2021) Multi-Head Self-Attention Transformation Networks for Aspect-Based Sentiment Analysis
+https://ieeexplore.ieee.org/abstract/document/9314135
+
+- problem: mere attention mechanism does not capture global dependencies in ABSA task.
+  ->solution: multi-head self-attention transformation (MSAT)
+  1. end2end MSAT to capture global interdependence of words in a sentence.
+  2. POS features of words are encoded and fed into the model
+
+** Zhang (2020) Knowledge Guided Capsule Attention Network for Aspect-Based Sentiment Analysis
+https://ieeexplore.ieee.org/abstract/document/9169794
+
+- Problems:
+  1. ABSA with Attention may focus on parts of the syntax that have nothing to do with target
+  2. special sentence structure such as double negative are not indentified
+  3. only one vector is used for sentence, neglecting complexity of language
+
+- Proposed Solution:
+  KGCapsAN (Knowledge Guided Capsule Network)
+  -> Bi-LSTM + Capsule Attention Network (routing method by attention mechanism)
+  + prior Knowledge (n-gram and syntactical structures) is utilized to guide the attention.
+** Zhao (2021) Knowledge-enabled BERT for aspect-based sentiment analysis
+https://www.sciencedirect.com/science/article/abs/pii/S0950705121004822
+
+- adding sentiment domain knowledge
+- employ sentiment knowledge graph which is queried with the input sentence. It returns a triple [aspect node set, sentiment node set, pos/neg relation set]
+- this is then fed into BERT along with original input sentence.
+** Liao (2020) An improved aspect-category sentiment analysis model for text sentiment analysis based on RoBERTa
+https://link.springer.com/article/10.1007/s10489-020-01964-1
+
+- ACSA
+- each aspect category is treated as subtask, aspect tokens are fed into model along with text.
+- using RoBERTa
+
+* General
+** ABSA
+analyzes the user's emotional state of aspect categories OR entities.
+2 subtasks:
+  - ATSA: Aspect Term Sentiment Analysis. aspect refers to entities in the text.
+        -> "([Food] is pretty good) but the ([service] is horrible)."
+
+  - ACSA: Aspect Category Sentiment Analysis. aspect refers to categories that are not mentioned in the text.
+        -> "Right off the Lin Brooklyn (this is a nice cozy place)(->[category:ambience]) with (good pizza)(->[category: food])."
+* Proposal Structure
+- differentiation ACSA / ATSA
+- 2020 paper beschreiben
+- graph my project + describe
