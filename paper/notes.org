@@ -73,6 +73,28 @@ https://link.springer.com/article/10.1007/s10489-020-01964-1
 - ACSA
 - each aspect category is treated as subtask, aspect tokens are fed into model along with text.
 - using RoBERTa
+** Zeng (2019) LCF: A Local Context Focus Mechanism for Aspect-Based Sentiment Classification (PyABSA)
+https://www.mdpi.com/2076-3417/9/16/3389/htm
+
+- solving ABSA task, taking into account local context
+- Local Context Focus (LCF) mechanism is proposed, based on Multi-head Self-Attention
+- uses BERT shared layer, Context features Dynamic Mask (CDM) and Context Features Dynamic Weighted layers (CDW)
+- Data: laptop and restaurant semeval + ACL twitter
+** Zeng (2021) Learning for target-dependent sentiment based on local context-aware embedding (PyABSA)
+https://link.springer.com/article/10.1007/s11227-021-04047-1
+
+- novel local context-aware network, building on previous LCF. -> LCA-Net, based on local context embedding (LCE)
+- local context prediction (LCP) loss is proposed to enhance the LCE
+- data: again laptop and restaurant Semeval and Twitter social dataset.
+- implementation of LCA-Net with multiple neural networks, validating transferability of the architecture
+** Yang (2021) Back to Reality: Leveraging Pattern-driven Modeling to Enable Affordable Sentiment Dependency Learning (PyABSA)
+https://arxiv.org/abs/2110.08604
+
+- problem: dependency tree based models are inefficient for ABSA/ABSC
+- contributions:
+  - novel sentiment patterns are introduced: LSA mechanism to learn sentiment dependency in sentiment clusters
+  - embedding-based local context focus to enhance the LCF mechanism (ELCF)
+  - differential weighting strategy for AW (aggregation window)
 
 * General
 ** ABSA
